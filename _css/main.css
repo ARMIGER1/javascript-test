@@ -1,0 +1,70 @@
+/* ========== Google Fonts ========== */
+@import url(http://fonts.googleapis.com/css?family=Gruppo|Josefin+Sans|Josefin+Slab|Lobster|Ubuntu|Raleway:100|Nixie+One|Coda);
+
+body {
+	background: orange;
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* ========== Header ========== */
+
+body > header {
+	background: #fff;
+	padding-top: 20px;
+	border-bottom: 2px solid #000;
+}
+
+body > header hgroup {
+	margin-left: 50px;
+}
+
+body > header hgroup h1 {
+	font-family: 'Raleway', cursive;
+	font-size: 4em;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+body > header hgroup p {
+	font-family: 'Nixie One', cursive;
+}
+
+/* ========== Container ========== */
+
+#container {
+	background: #fff;
+	padding-top: 20px;
+	padding-left: 50px;
+}
+
+#container article p {
+	font-family: 'Raleway', cursive;
+	font-size: 1em;
+	line-height: 1.5em;
+	letter-spacing: 1px;
+	padding-bottom: 1em;
+}
+
+#instructions {
+	font-family: 'Gruppo', sans-serif;
+	padding-bottom: 10px;
+}
+
+#instructions h1 {
+	font-family: 'Coda', cursive;
+	font-size: 2em;
+	padding-top: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+/* ========== Footer ========== */
+
+footer {
+	text-align: center;
+	font-family: 'Ubuntu', sans-serif;
+	letter-spacing: 1px;
+}
