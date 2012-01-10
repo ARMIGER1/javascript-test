@@ -3,10 +3,10 @@ $(document).ready(function () {
 	// Code below
 	
 	var file = 'arbitrary.html';
+	var LOAD = 'load';
+	var HTML = 'html';
 	
-	update('body header', file, '#site-header', 'load');
-	update('#container', file, '#instructions', 'load');
-	update('footer', file, 'footer', 'load');
+	reload();
 	
 	function update(element, externalFile, externalElement, type) {
 	
@@ -22,6 +22,12 @@ $(document).ready(function () {
 			default:
 				break;
 		}
+	}
+	
+	function reload() {
+		update('body header', file, '#site-header', LOAD);
+		update('#container', file, '#instructions', LOAD);
+		update('footer', file, 'footer', LOAD);
 	}
 	// Code above
 });
