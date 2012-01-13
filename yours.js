@@ -61,8 +61,73 @@ $(document).ready(function () {
         
         append('#targetDIV', united);
         
+        $('#targetDIV').html(united);
+        
 	});
 	// Click events
+	jQuery.listen('click', 'td img', function (e) {
+		
+		e.preventDefault();
+		
+		var w = $(this).width();
+		var f = $(this).css('float');
+		var p = $(this).css('position');
+		var z = $(this).css('z-index');
+		var currentWidth = $(this).width();
+		var windowWidth = window.innerWidth;
+		var windowHeight = window.innerHeight;
+		
+		if (p == 'static') {
+			
+			// Resize to fill page
+			$(this).animate({
+				opacity: 0
+			}, {
+				duration: 1000,
+				complete: function () {
+					$(this).css('background', '#000').css('position', 'absolute').css('top', 0).css('left', 0);
+				}
+			}).queue(function () {
+				$(this).animate({
+					opacity: 1,
+					width: windowWidth,
+					height: windowHeight
+				}, {
+					duration: 1000,
+					complete: function () {
+						// Just in case it's ever needed...
+					}
+				});
+				$(this).dequeue();
+			});
+		} else {
+			
+			// Resize to 100x100
+			$(this).animate({
+				height: 100,
+				width: 100,
+				opacity: 0
+			}, {
+				duration: 1000,
+				complete: function () {
+					$(this).css('background', 'none').css('position', 'static');
+				}
+			}).queue(function () {
+				
+				// Turn down the opacity
+				$(this).animate({
+					opacity: 1
+				}, {
+					duration: 1000,
+					complete: function () {
+						// Once again, in case it's ever needed...
+					}
+				});
+				$(this).dequeue();
+			});
+		}
+		
+	});
 	
 	/// Loader class
 	
