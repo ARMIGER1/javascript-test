@@ -61,6 +61,12 @@ body > header hgroup p {
 	padding-bottom: 0;
 }
 
+table img {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+}
+
 /* ========== Footer ========== */
 
 footer {
