@@ -1,71 +1,82 @@
 $(document).ready(function () {
-
+    
 	/// Global constants
 	var FILE = 'arbitrary.html';
 	var separator = '\n==========\n';
-	console.log('DOM loaded!' + separator);
-	var defaultImageSize = new Dimension(25, 50, 75);
+	var DOMLoadMsg = 'DOM Loaded!' + separator;
+	
+	// Log DOM loaded
+	console.log(DOMLoadMsg);
 	
 	//// Init build
 	build();
 	
-	/// Global functions
-	
-	// Builder
+	/**
+	 * Builder
+	 */
 	function build() {
-		console.log('Builder activated!  Building...' + separator);
+		var activatedMsg = 'Builder activated!  Building...' + separator;
+		console.log(activatedMsg);
 		reload();
 	}
 	
-	// Reloader
+	/**
+	 * Reloader
+	 */
 	function reload() {
-		console.log('Reloader activated!' + separator);
+		var activatedMsg = 'Reloader activated!' + separator;
+		console.log(activatedMsg);
 		var myLoader = new Loader();
 		myLoader.update('body header', FILE, '#site-header');
 		myLoader.update('#container', FILE, '#instructions');
 		myLoader.update('footer', FILE, '#copyright');
 	}
 	
-	// Appender
-	function append(parent, elementToAppend) {
-		console.log('Appender activated!\nAppending ' + elementToAppend + ' to ' + parent + '...' +  separator);
+	/**
+	 * Appender
+	 */
+	function append(parent, element) {
+		var activatedMsg = 'Appender activated!\nAppending ' + element + ' to ' + parent + '...' + separator;
 		
-		$(parent).append(elementToAppend);
+		console.log(activatedMsg);
+		
+		$(parent).append(element);
+		
 	}
 	
-	/// Button actions
-	$('#buildTable').click(function (e) {
-		
-		e.preventDefault();
-		
-		console.log('Build Table button clicked!');
+	function show_table() {
 		
 		var img = new CustomImage();
-		var google = img.show('http://www.google.com/favicon.ico', 'goog', 'Google Favicon');
-		var yahoo = img.show('http://www.yahoo.com/favicon.ico', 'yahoo', 'Yahoo Favicon');
-		var bing = img.show('http://www.bing.com/favicon.ico', 'bing', 'Bing Favicon');
-        var facebook = img.show('http://www.facebook.com/favicon.ico', 'fb', 'Facebook Favicon');
-        var myspace = img.show('http://www.myspace.com/favicon.ico', 'myspace', 'Myspace Favicon');
-        var twitter = img.show('http://www.twitter.com/favicon.ico', 'twitter', 'Twitter Favicon');
-        var stumbleUpon = img.show('http://www.stumbleupon.com/favicon.ico', 'su', 'StumbleUpon Favicon');
-        var reddit = img.show('http://www.reddit.com/favicon.ico', 'reddit', 'Reddit Favicon');
-        var delicious = img.show('http://www.del.icio.us/favicon.ico', 'delicio', 'Delicio.us Favicon');
-        
-        var searchEngines = Array(google, yahoo, bing);
-        var socnets = Array(facebook, myspace, twitter);
-        var sharing = Array(stumbleUpon, reddit, delicious);
-        
-        var tbl = new Table();
-        
-        var united = tbl.make('exampleTable', 3, 3, Array(searchEngines, socnets, sharing), true);
-        
-        append('#targetDIV', united);
-        
-        $('#targetDIV').html(united);
-        
-	});
-	// Click events
-	jQuery.listen('click', 'td img', function (e) {
+    	
+    	var google = img.show('http://placehold.it/1680x1050&text=Google', 'goog', 'Google Panel', true);
+    	var yahoo = img.show('http://placehold.it/1680x1050&text=Yahoo', 'yahoo', 'Yahoo Panel', true);
+    	var bing = img.show('http://placehold.it/1680x1050&text=Bing', 'bing', 'Bing Panel', true);
+    	var facebook = img.show('http://placehold.it/1680x1050&text=Facebook', 'fb', 'Facebook Panel', true);
+    	var myspace = img.show('http://placehold.it/1680x1050&text=Myspace', 'myspace', 'Myspace Panel', true);
+    	var twitter = img.show('http://placehold.it/1680x1050&text=Twitter', 'twitter', 'Twitter Panel', true);
+    	var stumbleupon = img.show('http://placehold.it/1680x1050&text=StumbleUpon', 'su', 'StumbleUpon Panel', true);
+    	var reddit = img.show('http://placehold.it/1680x1050&text=Reddit', 'reddit', 'Reddit Panel', true);
+    	var delicious = img.show('http://placehold.it/1680x1050&text=Del.icio.us', 'delicio', 'Del.icio.us Panel', true);
+    	
+    	var searchEngines = Array(google, yahoo, bing);
+    	var socnets = Array(facebook, myspace, twitter);
+    	var sharing = Array(stumbleupon, reddit, delicious);
+    	
+    	var tbl = new Table();
+    	
+    	var united = tbl.make('exampleTable', 3, 3, Array(searchEngines, socnets, sharing), true);
+    	
+    	append('#targetDIV', united);
+    	
+    	$('#targetDIV').html(united);
+    	
+    	var drag_me = new Dragger();
+    	
+    	drag_me.makeDraggable('[draggable=draggable]');
+	}
+	
+	// ========== Click Actions ==========
+	jQuery.listen('dblclick', 'td img', function (e) {
 		
 		e.preventDefault();
 		
@@ -73,19 +84,20 @@ $(document).ready(function () {
 		var f = $(this).css('float');
 		var p = $(this).css('position');
 		var z = $(this).css('z-index');
-		var currentWidth = $(this).width();
+		var p_temp;
+		var count = 0;
+		var currentWidth = w;
 		var windowWidth = window.innerWidth;
 		var windowHeight = window.innerHeight;
 		
-		if (p == 'static') {
-			
-			// Resize to fill page
+		//
+		if (w == 100) {
 			$(this).animate({
 				opacity: 0
 			}, {
 				duration: 1000,
 				complete: function () {
-					$(this).css('background', '#000').css('position', 'absolute').css('top', 0).css('left', 0);
+					$(this).css({position: 'absolute', top: 0, left: 0});
 				}
 			}).queue(function () {
 				$(this).animate({
@@ -95,74 +107,125 @@ $(document).ready(function () {
 				}, {
 					duration: 1000,
 					complete: function () {
-						// Just in case it's ever needed...
 					}
 				});
 				$(this).dequeue();
 			});
 		} else {
-			
-			// Resize to 100x100
 			$(this).animate({
-				height: 100,
 				width: 100,
+				height: 100,
 				opacity: 0
 			}, {
 				duration: 1000,
 				complete: function () {
-					$(this).css('background', 'none').css('position', 'static');
+					$(this).css({position: 'static'});
 				}
 			}).queue(function () {
-				
-				// Turn down the opacity
 				$(this).animate({
 					opacity: 1
 				}, {
 					duration: 1000,
 					complete: function () {
-						// Once again, in case it's ever needed...
 					}
 				});
 				$(this).dequeue();
 			});
 		}
 		
+		//alert(w + ', ' + z);
 	});
 	
-	/// Loader class
+	// ========== Button Actions ==========
 	
 	/**
-	  * 3 arguments will pull from an external file
-	  * 2 arguments, on the other hand, will insert HTML directly.
-	  */
-	function Loader() {
-		console.log('Loader activated!' + separator);
+	 * Build table button
+     */
+    $('#buildTable').click(function (e) {
+    	
+    	e.preventDefault();
+    	
+    	show_table();
+    	
+    });
+	
+	// ========== Classes ==========
+	
+	/**
+	 * Dragger class
+	 */
+	function Dragger() {
 		
-		// Update
+		var activatedMsg = 'New Draggable object created!';
+		console.log(activatedMsg);
+		
+		this.makeDraggable = function (element) {
+			
+			var notification = 'Making ' + element + ' draggable...';
+			console.log(notification);
+			
+			$(element).on('mousedown', function (evt) {
+				var offset = {x: evt.offsetX || evt.originalEvent.layerX, y: evt.offsetY || evt.originalEvent.layerY};
+				
+				// Bind on mousemove only if element is currently being dragged
+				$(document).on({
+					// Delegate the mousemove event to the draggable element
+					'mousemove.drag': $.proxy(function (evt) {
+						$(this).css('position', 'absolute');
+						$(this).css({left: evt.pageX - offset.x, top: evt.pageY - offset.y});
+					}, this),
+					
+					// Unbind namespaced events on mouseup
+					'mouseup.drag': function (evt) {
+						$(document).off('.drag');
+					}
+				});
+				
+				return false;
+			});
+		};
+	}
+	
+	/**
+	 * Loader class
+	 */
+	function Loader() {
+		var activatedMsg = 'Loader activated!' + separator;
+		console.log(activatedMsg);
+		
+		/**
+		 * Update function
+		 */
 		this.update = function () {
-			console.log('Loader has initialized the updater!' + separator);
+			
+			var initMsg = 'Loader has initialized the updater!' + separator;
+			console.log(initMsg);
 			
 			// Function variables
 			var element = arguments[0];
 			
 			if (arguments.length == 3) {
+				
 				var externalFile = arguments[1];
 				var externalElement = arguments[2];
 				var place = externalFile + ' ' + externalElement;
 				
-				console.log('Updater will now attempt to pull ' + externalElement + ' from ' + externalFile + ' and place it in [' + element + ']...');
+				var msg = 'Updater will now attempt to pull ' + externalElement + ' from ' + externalFile + ' and place it in [' + element + ']...' + separator;
+				
+				// Log it!
+				console.log(msg);
 				
 				// Load attempt
 				$(element).load(place, function (response, status, xhr) {
-					if (status == "error") {
+					if (status == 'error') {
 						var msg = 'An error appeared: ';
-						console.error(msg + xhr.status + " " + xhr.statusText);
-					} else if (status == "success") {
-						var msg = 'Success! ';
-						console.log(msg + xhr.status + " " + xhr.statusText);
+						console.error(msg + xhr.status + ' ' + xhr.statusText);
+					} else if (status == 'success') {
+						var msg = 'Success!';
+						console.log(msg + xhr.status + ' ' + xhr.statusText);
 					}
-					
 				});
+				
 			} else if (arguments.length == 2) {
 				
 				var markup = arguments[1];
@@ -171,120 +234,139 @@ $(document).ready(function () {
 			}
 			
 		};
+		
+		
 	}
 	
-	/// Dimension class
-	function Dimension () {
+	/**
+	 * Dimension class
+	 */
+	function Dimension() {
+		
 		this.width = 0;
 		this.height = 0;
 		this.length = 0;
 		this.maxArgs = 3;
-		this.beginMsg = "A new dimension object has been created!\n";
 		
-		/// Argument handlers
+		var activatedMsg = 'A new Dimension object has been created!\n';
+		console.log(activatedMsg);
+		
+		// Argument handlers
 		switch (arguments.length) {
 			case 3:
 				this.width = arguments[0];
 				this.height = arguments[1];
 				this.length = arguments[2];
-				var msg = this.beginMsg + "\twidth: " + this.width + "\n\theight: " + this.height + "\n\tlength: " + this.length;
+				var msg = activatedMsg + "\twidth: " + this.width + "\n\theight: " + this.height + "\n\tlength: " +  this.length;
 				console.log(msg + separator);
 				break;
 			case 2:
 				this.width = arguments[0];
 				this.height = arguments[1];
-				var msg = this.beginMsg + "\twidth: " + this.width + "\n\theight: " + this.height + "\n\tlength: " + this.length;
+				var msg = activatedMsg + "\twidth: " + this.width + "\n\theight: " + this.height + "\n\tlength: " + this.length;
 				console.log(msg + separator);
 				break;
 			case 1:
 				this.width = arguments[0];
 				this.height = this.width;
 				this.length = this.width;
-				var msg = this.beginMsg + "\twidth: " + this.width + "\n\theight: " + this.height + "\n\tlength: " + this.length;
+				var msg = activatedMsg + "\twidth: " + this.width + "\n\theight: " +  this.height + "\n\tlength: " + this.length;
 				console.log(msg + separator);
 				break;
 			case 0:
-				msg = 'A new dimension object has been created with no arguments!' + separator;
+				var msg = 'A new dimension object has been created with no arguments!' + separator;
 				console.log(msg);
 				break;
 			default:
-				var errmsg = 'Dimension can only take up to ' + this.maxArgs + ' arguments.';
-				console.error(errmsg);
+				var msg = 'Dimension can only take a maximum of ' + this.maxArgs + ' arguments.';
+				console.error(msg);
 				break;
 		}
 		
-		/// Getters
+		// ========== Getters ==========
 		this.getWidth = function () {
-			console.log('Getting the width of the selected object...');
+			msg = 'Getting the width of the selected object...';
+			console.log(msg);
 			return this.width;
 		};
 		
 		this.getHeight = function () {
-			console.log('Getting the height of the selected object...');
+			msg = 'Getting the height of the selected object...';
+			console.log(msg);
 			return this.height;
 		};
 		
 		this.getLength = function () {
-			console.log('Getting the length of the selected object...');
+			msg = 'Getting the length of the selected object...';
+			console.log(msg);
 			return this.length;
 		};
 		
-		/// Setters
+		// ========== Setters ==========
 		this.setWidth = function (width) {
-			console.log('Setting the width of the current object to ' + width + 'px...');
+			var msg = 'Setting the width of the current object to ' + width + 'px...';
+			console.log(msg);
 			this.width = width;
-			
-			console.log('Width is now ' + this.width + 'px.' + separator);
 		};
 		
 		this.setHeight = function (height) {
-			console.log('Setting the height of the current object to ' + height + 'px...');
+			var msg = 'Setting the height of the current object to ' + height + 'px...';
+			console.log(msg);
 			this.height = height;
-			
-			console.log('Height is now ' + this.height + 'px.' + separator);
 		};
 		
 		this.setLength = function (length) {
-			console.log('Setting the length of the current object to ' + length + 'px...');
-			this.length = length;
-			
-			console.log('Length is now ' + this.height + 'px.' + separator);
+			var msg = 'Setting the length of the current object to ' + length + 'px...';
+			console.log(msg);
+			this.height = height;
 		};
 		
 	}
 	
-	/// Point class
-	function Point() {
-	}
-	
-	/// CustomImage class
+	/**
+	 * CustomImage class
+	 */
 	function CustomImage() {
-		
-		console.log('A new CustomImage object has been created!');
+		var activatedMsg = 'A new CustomImage object has been created!';
+		console.log(activatedMsg);
 		
 		// Show
-		this.show = function (src, unhashedID, alt) {
+		this.show = function (src, unhashedID, alt, isDraggable) {
 			
-			console.log('Showing a custom image...' + separator);
+			var msg = 'Showing a custom image...' + separator;
+			var draggable = '';
 			
-			var result = '<img src="' + src + '" alt="' + alt + '" id="' + unhashedID + '" />';
+			console.log(msg);
+			
+			if (isDraggable == true) {
+				draggable = 'draggable';
+			}
+			
+			var result = '<img src="' + src + '" id="' + unhashedID + '" alt="' + alt + '" draggable="' + draggable + '" />';
 			
 			return result;
 		};
 		
 	}
 	
-	/// Shuffler class
+	/**
+	 * Shuffler class
+	 */
 	function Shuffler() {
 		
-		console.log('New Shuffler created!' + separator);
+		var activatedMsg = 'New Shuffler object created!!' + separator;
+		
+		console.log(activatedMsg);
 		
 		this.shuffle = function (type, array) {
 			
 			if (type == 'fisherYates') {
 				
-				console.log('Shuffling with the Fisher-Yates algorithm...');
+				var msg = 'Shuffling with the Fisher-Yates algorithm...';
 				
+				console.log(msg);
+				
+				// Here we go!
 				var i = array.length;
 				
 				if (i === 0) {
@@ -299,23 +381,35 @@ $(document).ready(function () {
 					array[i] = temp_j;
 					array[j] = temp_i;
 				}
+				
 			} // End if
 			
-			console.log('Finished shuffling!' + separator);
+			msg = 'Finished shuffling!';
+			
+			console.log(msg);
+			
 		};
 	}
 	
-	/// Table class
+	/**
+	 * Table class
+	 */
 	function Table() {
 		
-		console.log('New Table object created!');
+		var activatedMsg = 'New Table object created!' + separator;
 		
-		/// Table maker
+		console.log(activatedMsg);
+		
+		/**
+		 * Table maker
+		 */
 		this.make = function (id, rows, cols, dataArray, random) {
+			var msg = 'Making a new table...';
 			
-			console.log('Making a new table...');
+			console.log(msg);
 			
 			var newTable = '';
+			
 			newTable += '<table id="' + id + '">';
 			newTable += '<tbody>';
 			
@@ -339,16 +433,16 @@ $(document).ready(function () {
 				}
 				
 				newTable += '</tr>';
+				
 			}
 			
 			newTable += '</tbody>';
 			newTable += '</table>';
 			
 			return newTable;
+			
 		};
-		
 	}
 	
-	/// More classes if needed
-	
+	// More classes if needed
 });

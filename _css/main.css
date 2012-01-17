@@ -67,6 +67,15 @@ table img {
 	overflow: hidden;
 }
 
+/* ========== Drag and Drop ========== */
+
+/*
+[draggable] {
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: move;
+}*/
+
 /* ========== Footer ========== */
 
 footer {
