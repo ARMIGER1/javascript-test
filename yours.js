@@ -47,13 +47,16 @@ $(document).ready(function () {
 	function show_table() {
 		
 		var img = new CustomImage();
+		
+		// Test
+		var kawaii = img.show('_images/kawaiibg.png', 'test', 'Test Pic', true);
     	
     	var google = img.show('http://placehold.it/1680x1050&text=Google', 'goog', 'Google Panel', true);
     	var yahoo = img.show('http://placehold.it/1680x1050&text=Yahoo', 'yahoo', 'Yahoo Panel', true);
-    	var bing = img.show('http://placehold.it/1680x1050&text=Bing', 'bing', 'Bing Panel', true);
-    	var facebook = img.show('http://placehold.it/1680x1050&text=Facebook', 'fb', 'Facebook Panel', true);
-    	var myspace = img.show('http://placehold.it/1680x1050&text=Myspace', 'myspace', 'Myspace Panel', true);
-    	var twitter = img.show('http://placehold.it/1680x1050&text=Twitter', 'twitter', 'Twitter Panel', true);
+    	var bing = img.show('http://placehold.it/1680x1050/FFA615/ffffff/&text=Bing', 'bing', 'Bing Panel', true);
+    	var facebook = img.show('http://placehold.it/1680x1050/3B5998/ffffff/&text=Facebook', 'fb', 'Facebook Panel', true);
+    	var myspace = img.show('http://placehold.it/1680x1050/000000/ffffff/&text=Myspace', 'myspace', 'Myspace Panel', true);
+    	var twitter = img.show('http://placehold.it/1680x1050/60D7FF/ffffff/&text=Twitter', 'twitter', 'Twitter Panel', true);
     	var stumbleupon = img.show('http://placehold.it/1680x1050&text=StumbleUpon', 'su', 'StumbleUpon Panel', true);
     	var reddit = img.show('http://placehold.it/1680x1050&text=Reddit', 'reddit', 'Reddit Panel', true);
     	var delicious = img.show('http://placehold.it/1680x1050&text=Del.icio.us', 'delicio', 'Del.icio.us Panel', true);
@@ -97,7 +100,7 @@ $(document).ready(function () {
 			}, {
 				duration: 1000,
 				complete: function () {
-					$(this).css({position: 'absolute', top: 0, left: 0});
+					$(this).css({position: 'absolute', top: 0, left: 0}).css('z-index', 99);
 				}
 			}).queue(function () {
 				$(this).animate({
@@ -119,7 +122,7 @@ $(document).ready(function () {
 			}, {
 				duration: 1000,
 				complete: function () {
-					$(this).css({position: 'static'});
+					$(this).css({position: 'static'}).css('z-index', 'auto');
 				}
 			}).queue(function () {
 				$(this).animate({
