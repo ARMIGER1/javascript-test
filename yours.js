@@ -92,9 +92,14 @@ $(document).ready(function () {
 		var currentWidth = w;
 		var windowWidth = window.innerWidth;
 		var windowHeight = window.innerHeight;
+		var text = $('#container article');
 		
 		//
 		if (w == 100) {
+			
+			// Hide the instructions, so when images go full-screen, you can't scroll.
+			text.hide(1000);
+			
 			$(this).animate({
 				opacity: 0
 			}, {
@@ -149,6 +154,14 @@ $(document).ready(function () {
     	e.preventDefault();
     	
     	show_table();
+    	
+    });
+    
+    $('#toggleText').click(function (e) {
+    	e.preventDefault();
+    	
+    	// Toggle the text
+    	$('#container article').toggle(1000);
     	
     });
 	
