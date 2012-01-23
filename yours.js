@@ -51,15 +51,15 @@ $(document).ready(function () {
 		// Test
 		var kawaii = img.show('_images/kawaiibg.png', 'test', 'Test Pic', true);
     	
-    	var google = img.show('http://placehold.it/1680x1050&text=Google', 'goog', 'Google Panel', true);
-    	var yahoo = img.show('http://placehold.it/1680x1050&text=Yahoo', 'yahoo', 'Yahoo Panel', true);
+    	var google = img.show('http://placehold.it/1680x1050/082463/ffffff/&text=Google', 'goog', 'Google Panel', true);
+    	var yahoo = img.show('http://placehold.it/1680x1050/7B0099/ffffff/&text=Yahoo', 'yahoo', 'Yahoo Panel', true);
     	var bing = img.show('http://placehold.it/1680x1050/FFA615/ffffff/&text=Bing', 'bing', 'Bing Panel', true);
     	var facebook = img.show('http://placehold.it/1680x1050/3B5998/ffffff/&text=Facebook', 'fb', 'Facebook Panel', true);
     	var myspace = img.show('http://placehold.it/1680x1050/000000/ffffff/&text=Myspace', 'myspace', 'Myspace Panel', true);
     	var twitter = img.show('http://placehold.it/1680x1050/60D7FF/ffffff/&text=Twitter', 'twitter', 'Twitter Panel', true);
-    	var stumbleupon = img.show('http://placehold.it/1680x1050&text=StumbleUpon', 'su', 'StumbleUpon Panel', true);
-    	var reddit = img.show('http://placehold.it/1680x1050&text=Reddit', 'reddit', 'Reddit Panel', true);
-    	var delicious = img.show('http://placehold.it/1680x1050&text=Del.icio.us', 'delicio', 'Del.icio.us Panel', true);
+    	var stumbleupon = img.show('http://placehold.it/1680x1050/EB4924/ffffff/&text=StumbleUpon', 'su', 'StumbleUpon Panel', true);
+    	var reddit = img.show('http://placehold.it/1680x1050/C5DDF6/FE3230/&text=Reddit', 'reddit', 'Reddit Panel', true);
+    	var delicious = img.show('http://placehold.it/1680x1050/3274D0/000000/&text=Del.icio.us', 'delicio', 'Del.icio.us Panel', true);
     	
     	var searchEngines = Array(google, yahoo, bing);
     	var socnets = Array(facebook, myspace, twitter);
