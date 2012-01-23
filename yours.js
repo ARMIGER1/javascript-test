@@ -462,3 +462,27 @@ $(document).ready(function () {
 	
 	// More classes if needed
 });
+
+function process_speech_test() {
+	var command = $('#spoken').val();
+	console.log(command);
+	
+	switch (command) {
+		case 'show text':
+			$('#container article').show(1000);
+			break;
+		case 'hide text':
+			$('#container article').hide(1000);
+			break;
+		case 'scramble images':
+		case 'show images':
+			$('#buildTable').trigger('click');
+			break;
+		case 'reload page':
+			location.reload();
+			break;
+		default:
+			$('#spoken').val("I'm sorry, I don't understand your command.").width(300);
+			break;
+	}
+}
