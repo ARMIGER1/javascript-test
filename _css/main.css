@@ -48,6 +48,12 @@ body > header hgroup p {
 	padding-bottom: 1em;
 }
 
+#container ul {
+	font-size: 1em;
+	line-height: 1.5em;
+	letter-spacing: 1px;
+}
+
 #instructions {
 	font-family: 'Gruppo', sans-serif;
 	padding-bottom: 10px;
